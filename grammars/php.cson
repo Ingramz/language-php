@@ -1391,7 +1391,7 @@
       }
       {
         'match': '\\\\x[0-9A-Fa-f]{1,2}'
-        'name': 'constant.character.escape.octal.php'
+        'name': 'constant.character.escape.hexadecimal.php'
       }
       {
         'match': '\\\\u{[0-9A-Fa-f]+}'
@@ -1912,6 +1912,9 @@
         'include': '#heredoc'
       }
       {
+        'include': '#numbers'
+      }
+      {
         'match': '(?i)\\bclone\\b'
         'name': 'keyword.other.clone.php'
       }
@@ -1982,9 +1985,6 @@
             'include': '#variable-name'
           }
         ]
-      }
-      {
-        'include': '#numbers'
       }
       {
         'include': '#instantiation'
@@ -2077,37 +2077,36 @@
   'numbers':
     'patterns': [
       {
-        'match': '\\b(?<!\\$)0[xX][0-9a-fA-F]+\\b(?!\\$)'
-        'name': 'constant.numeric.hex.php'
+        'match': '0[xX][0-9a-fA-F]+'
+        'name': 'constant.numeric.integer.hexadecimal.php'
       }
       {
-        'match': '\\b(?<!\\$)0[bB][01]+\\b(?!\\$)'
-        'name': 'constant.numeric.binary.php'
+        'match': '0[bB][01]+'
+        'name': 'constant.numeric.integer.binary.php'
       }
       {
-        'match': '\\b(?<!\\$)0[0-7]+\\b(?!\\$)'
-        'name': 'constant.numeric.octal.php'
+        'match': '0[0-7]+'
+        'name': 'constant.numeric.integer.octal.php'
       }
       {
         'match': '''(?x)
-          (?<!\\$)(?:
-            (?:\\b[0-9]+\\b(?!\\.))|
-            (?:[0-9]*(\\.)[0-9]+)|
-            (?:[0-9]+(\\.)[0-9]*)|
-            (?:[0-9]+|[0-9]*(\\.)[0-9]+|[0-9]+(\\.)[0-9]*)[eE][+-]?[0-9]+
-          )(?!\\$)
+          (?:
+            [0-9]*(\\.)[0-9]+([eE][+-]?[0-9]+)?|
+            [0-9]+(\\.)[0-9]*([eE][+-]?[0-9]+)?|
+            [0-9]+[eE][+-]?[0-9]+
+          )
         '''
         'captures':
           '0':
-            'name': 'constant.numeric.decimal.php'
+            'name': 'constant.numeric.float.decimal.php'
           '1':
             'name': 'punctuation.separator.decimal.period.php'
           '2':
             'name': 'punctuation.separator.decimal.period.php'
-          '3':
-            'name': 'punctuation.separator.decimal.period.php'
-          '4':
-            'name': 'punctuation.separator.decimal.period.php'
+      }
+      {
+        'match': '0|[1-9][0-9]*'
+        'name': 'constant.numeric.integer.decimal.php'
       }
     ]
   'object':
