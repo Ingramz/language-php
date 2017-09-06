@@ -40,17 +40,25 @@
   'text.html.php - (meta.embedded | meta.tag), L:text.html.php meta.tag, L:source.js.embedded.html':
     'patterns': [
       {
-        'begin': '(^\\s*)(?=<\\?(?![^?]*\\?>))'
+        'begin': '(^\\s*)(<)(?=\\?(?![^?]*\\?>))'
         'beginCaptures':
-          '0':
+          '1':
             'name': 'punctuation.whitespace.embedded.leading.php'
+          '2':
+            'name': 'meta.embedded.block.php'
+            'patterns': [
+              {
+                'match': '<'
+                'name': 'punctuation.section.embedded.begin.php'
+              }
+            ]
         'end': '(?!\\G)(\\s*$\\n)?'
         'endCaptures':
           '0':
             'name': 'punctuation.whitespace.embedded.trailing.php'
         'patterns': [
           {
-            'begin': '<\\?(?i:php|=)?'
+            'begin': '(?<=<)\\?(?i:php|=)?'
             'beginCaptures':
               '0':
                 'name': 'punctuation.section.embedded.begin.php'
