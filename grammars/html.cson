@@ -34,6 +34,8 @@
     (?:(?:\\s|^)vi(?:m[<=>]?\\d+|m)?|\\sex)(?=:(?=\\s*set?\\s[^\\n:]+:)|:(?!\\s*set?\\s))(?:(?:\\s|\\s*:\\s*)\\w*(?:\\s*=(?:[^\\n\\\\\\s]|\\\\.)*)?)*[\\s:](?:filetype|ft|syntax)\\s*=
       (?:php|phtml)
     (?=\\s|:|$)
+    # Regular opening PHP tags
+    ^\\s*<\\?(?i:php|=|\\s|$)
   )
 '''
 'foldingStartMarker': '(/\\*|\\{\\s*$|<<<HTML)'
